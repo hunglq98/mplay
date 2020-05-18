@@ -1,6 +1,6 @@
 const initalState = {
   currentTrack: {
-    id: '0',
+    id: '0000',
     title: 'Track0',
     artist: 'Unknown',
     duration: 0,
