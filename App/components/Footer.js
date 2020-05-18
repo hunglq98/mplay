@@ -20,11 +20,23 @@ function Footer(props) {
     const coverSource = currentTrack.artwork ? {uri: currentTrack.artwork} : require('../icons/placeholder.jpg');
     return renderFooter && currentTrack.id != '0000' ? (
         <TouchableWithoutFeedback onPress = {() => navigation.navigate('player')}>
-
+            <ViewWrapper>
+                <Thumbnail source = {coverSource} />
+            </ViewWrapper>
         </TouchableWithoutFeedback>
     ) : null 
 }
 
+
+function mapStateToProps(state) {
+    return {
+        renderFooter: state.footer.footerVisible, 
+        currentTrack: state.playback.currentTrack, 
+        isPlaying: state.player.isPlaying, 
+    }
+}
+
+export default connect(mapStateToProps, actions)(withTheme(Footer))
 
 const ViewWrapper = styled.View`
     height: 60px; 
