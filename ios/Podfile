@@ -83,6 +83,8 @@ target 'mplay' do
 
   pod 'react-native-track-player', :path => '../node_modules/react-native-track-player'
 
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
   target 'mplayTests' do
     inherit! :complete
     # Pods for testing

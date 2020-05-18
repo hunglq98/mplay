@@ -6,6 +6,8 @@
  * @flow strict-local
  */
 
+ // 	RNFB_ANDROID_PERMISSIONS=true react-native link 
+
 import React from 'react';
 import {
   SafeAreaView,
