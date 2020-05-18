@@ -6,10 +6,13 @@ import {connect} from 'react-redux';
 import {navigationRef} from './NavigationService'; 
 import * as actions from '../redux/actions';
 import * as themes from '../themes'; 
+import Footer from '../components/Footer'
+import RootStack from './RootStack'
 
 function RootNavigator(props) {
     const {theme} = props; 
     const color = themes[theme].background; 
+    console.log(color)
     const statusBarContent = `${theme === 'light' ? 'dark': 'light'}-content`
     const wrapperColor = {
         colors: {
@@ -20,9 +23,8 @@ function RootNavigator(props) {
         <NavigationContainer ref = {navigationRef} theme={wrapperColor}>
             <ThemeProvider theme={themes[theme]}>
                 <StatusBar barStyle={statusBarContent} backgroundColor={color} animated />
-                <View>
-                    <Text>Root navigation</Text>
-                </View>
+                <RootStack />
+                <Footer />
             </ThemeProvider>
         </NavigationContainer>
     )

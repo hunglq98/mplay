@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import {store, persistor} from './App/redux/store'
 import RootNavigator from './App/navigation';
+import RootStack from './App/navigation/RootStack';
 
 export default function App() {
   const [runTime, setRunTime] = useState(false) 

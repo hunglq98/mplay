@@ -6,12 +6,13 @@ import * as actions from '../redux/actions'
 import {useTrackPlayerProgress} from 'react-native-track-player/lib/hooks'
 import * as navigation from '../navigation/NavigationService'; 
 import { contrastColor, elevatedBGColor, contrastTransColor } from '../themes/styles';
-
+import Icon from '../components/Icon';
+import ProgressBar from '../components/ProgressBar'
 
 function Footer(props) {
     const {isPlaying, renderFooter, currentTrack, theme} = props; 
     const {position, duration} = useTrackPlayerProgress(100); 
-
+    console.log('abc')
     function togglePlayback() {
         props.setPlayback(!isPlaying) 
     }
@@ -20,15 +21,32 @@ function Footer(props) {
     const coverSource = currentTrack.artwork ? {uri: currentTrack.artwork} : require('../icons/placeholder.jpg');
     return renderFooter && currentTrack.id != '0000' ? (
         <TouchableWithoutFeedback onPress = {() => navigation.navigate('player')}>
-            <ViewWrapper>
+                <ViewWrapper>
                 <Thumbnail source = {coverSource} />
+                <TextWrapper>
+                    <Title numberOfLines={1}>{currentTrack.title || 'unknown'}</Title>
+                    <Artist numberOfLines={1}>{currentTrack.artist || 'unknown'}</Artist>
+                </TextWrapper>
+                {isPlaying ? (
+                    <StyledIcon {...icons.pauseIcon} onPress = {togglePlayback} /> 
+                ): (
+                    <StyledIcon {...icons.playIcon} onPress={togglePlayback} />
+                )}
+                <ProgressWrapper>
+                    <Progress
+                        progress={isNaN(progress) ? 0 : +progress.toFixed(3)}
+                        color={theme.foreground}
+                     />
+                </ProgressWrapper>
             </ViewWrapper>
         </TouchableWithoutFeedback>
-    ) : null 
+    ) : null;
 }
 
 
 function mapStateToProps(state) {
+    console.log(state)
+    console.log(typeof(state))
     return {
         renderFooter: state.footer.footerVisible, 
         currentTrack: state.playback.currentTrack, 
@@ -57,7 +75,7 @@ const Thumbnail = styled.Image`
     border-radius: 21px; 
 `;
 
-SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const TextWrapper = styled.View`
     font-family: 'CircularBold'; 
@@ -69,8 +87,15 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
     font-family: 'CircularLight'; 
     font-size: 12px; 
-    color: ${contrastColor(0.8)}; 
+    color: ${contrastTransColor(0.8)}; 
     width: ${SCREEN_WIDTH / 2}px; 
+`;
+
+const Artist = styled.Text`
+	font-family: 'CircularLight';
+	font-size: 12px;
+	color: ${contrastTransColor(0.8)};
+	width: ${SCREEN_WIDTH / 2}px;
 `;
 
 const StyledIcon = styled(Icon)`
