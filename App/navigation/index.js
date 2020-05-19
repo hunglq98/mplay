@@ -12,7 +12,6 @@ import RootStack from './RootStack'
 function RootNavigator(props) {
     const {theme} = props; 
     const color = themes[theme].background; 
-    console.log(color)
     const statusBarContent = `${theme === 'light' ? 'dark': 'light'}-content`
     const wrapperColor = {
         colors: {

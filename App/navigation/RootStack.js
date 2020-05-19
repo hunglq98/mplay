@@ -22,7 +22,6 @@ function RootStack() {
             <Modal.Screen name = "main" component={MainStack}  />
             <Modal.Screen name = "player" component={Player} />
             <Modal.Screen name = "addToPlaylist" options={{title: "Add to playlist"}} component={AddToPlaylist}  />
-            {/* <Modal.Screen name = "lyrics"/> */}
         </Modal.Navigator>
     )
 }

@@ -12,7 +12,6 @@ import ProgressBar from '../components/ProgressBar'
 function Footer(props) {
     const {isPlaying, renderFooter, currentTrack, theme} = props; 
     const {position, duration} = useTrackPlayerProgress(100); 
-    console.log('abc')
     function togglePlayback() {
         props.setPlayback(!isPlaying) 
     }
@@ -46,7 +45,6 @@ function Footer(props) {
 
 function mapStateToProps(state) {
     console.log(state)
-    console.log(typeof(state))
     return {
         renderFooter: state.footer.footerVisible, 
         currentTrack: state.playback.currentTrack, 

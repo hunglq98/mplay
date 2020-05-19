@@ -39,22 +39,13 @@ function MainStack(props) {
 
 	const noHeader = { headerShown: false };
     const headerTitle = ({ route }) => ({ title: route.params.title });
-    console.log(headerTitle)
 	return (
 		<Stack.Navigator
 			initialRouteName="bottom-tab"
 			headerMode="screen"
 			screenOptions={screenOptions}>
 			<Stack.Screen name="bottom-tab" component={BottomTabNav} options={noHeader} />
-			{/* <Stack.Screen
-				name="addToPlaylist"
-				component={AddToPlaylist}
-				options={{ title: 'Add to playlist' }}
-			/> */}
 			<Stack.Screen name="playlist" component={ShowPlaylistScreen} options={headerTitle} />
-			{/* <Stack.Screen name="content" component={ShowContentScreen} options={headerTitle} /> */}
-			{/* <Stack.Screen name="tab-order" component={TabOrder} options={noHeader} />
-			<Stack.Screen name="about" component={AboutScreen} options={{ title: 'About' }} /> */}
 		</Stack.Navigator>
 	);
 }

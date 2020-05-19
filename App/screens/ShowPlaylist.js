@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import * as actions from '../redux/actions';
 import { connect } from 'react-redux';
 
-function Player() {
+function Playlist() {
     return (
         <View>
             <Text>show playlist</Text>
@@ -11,4 +11,4 @@ function Player() {
     )
 }
 
-export default connect(null, actions)(Player)
+export default connect(null, actions)(Playlist)
