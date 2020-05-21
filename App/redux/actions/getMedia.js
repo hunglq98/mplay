@@ -1,4 +1,4 @@
-import {RNAndroidAudioStore} from 'react-native-get-music-files';
+import MusicFiles from 'react-native-get-music-files';
 import RNFetchBlob from 'rn-fetch-blob';
 import {store} from '../store'; 
 import {getStoragePermissions, checkStoragePermissions} from '../../helpers/permissions';
@@ -24,7 +24,7 @@ export const getMedia = () => async (dispatch) => {
         const media = await getMediaWithCovers(); 
         dispatch({type: 'get_media_success', payload: media});
     } else {
-        const results = await RNAndroidAudioStore.getAll(trackInforReq); 
+        const results = await MusicFiles.getAll(trackInforReq); 
         const media = getMediaInfo(results) 
         dispatch({type: 'get_media_success', payload: media})
         const mediaWithCovers = await getMediaWithCovers() ; 
@@ -34,10 +34,10 @@ export const getMedia = () => async (dispatch) => {
 
 const getMediaWithCovers = async () => {
     const coverFolder = RNFetchBlob.fs.dirs.DocumentDir + '/.MPlay'; 
-    let result = await RNAndroidAudioStore.getAll({
-        ...PushSubscriptionOptions, 
+    let result = await MusicFiles.getAll({
+        ...trackInforReq, 
         cover: true, 
         coverFolder, 
     })
-    return getMediaInfo(results);
+    return getMediaInfo(result);
 }

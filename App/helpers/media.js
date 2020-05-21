@@ -4,8 +4,14 @@ import {store} from '../redux/store';
 export default function getMediaInfo(media) {
     if (!Array.isArray(media) || media.length === 0) return []; 
     let newMedia = [] 
-    const folderName = ''; 
-    let mediaFiles = media; 
+    let folderName = ''; 
+    // let mediaFiles = media; 
+    let {
+        settings: {foldersToSkip}
+    } = store.getState();
+
+    console.log('FOLDERS SKIP', foldersToSkip)
+    let mediaFiles = media.filter((val) => !foldersToSkip.includes(getFolder(val.path).toLowerCase()))
     for (let i =0; i<mediaFiles.length; i++) {
         if (mediaFiles[i].title) {
             folderName = getFolder(mediaFiles[i].path)
