@@ -6,14 +6,15 @@ import * as actions from '../redux/actions';
 import Icon from '../components/Icon'; 
 import { backgroundColor, bgTransColor, contrastTransColor, contrastColor } from '../themes/styles';
 import PlaybackControl from '../components/PlaybackControl';
-
+import OptionsMenu from '../components/OptionsMenu';
+import LinearGradient from 'react-native-linear-gradient'; 
 
 const PlayerWidth = Dimensions.get('window').width * 0.82; 
 
 
 function Player(props) {
     const {navigation, currentTrack, theme} = props; 
-
+    console.log(currentTrack)
     useEffect(() => {
         let unsubscribe = navigation.addListener('focus', props.hideFooter)
         return unsubscribe; 
@@ -21,22 +22,24 @@ function Player(props) {
 
     return (
         <Background source={{uri: currentTrack.artwork}} blurRadius={40}>
+            <Gradient colors={[`${theme.bgTrans}0.35)`, `${theme.bgTrans}0.8)`]}>
             <Header>
                 <StyledIcon {...icons.collapse} onPress={navigation.goBack} />
                 <HeaderText>Đang phát</HeaderText>
                 <OptionsMenu target={<StyledIcon {...icons.options} />} currentItem={currentTrack} />
             </Header>
             <Wrapper>
-                <CoverArt src={currentTrack.artwork} />
+                {/* <CoverArt src={currentTrack.artwork} /> */}
                 <TextWrapper>
                     <Title numberOfLines={1}>{currentTrack.title}</Title>
                     <Artist numberOfLines={1}>{currentTrack.artist}</Artist>
                 </TextWrapper>
-                <ProgressSlider />
+                {/* <ProgressSlider /> */}
                 <PlaybackControl/>
             </Wrapper>
+            </Gradient>
         </Background>
-    )
+    );
 }
 
 function mapStateToProps(state) {
@@ -48,12 +51,12 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, actions)(withTheme(Player))
 
 
-// const Gradient = styled(LinearGradient)`
-// 	flex: 1;
-// 	justify-content: center;
-// 	align-items: center;
-// 	/* background-color: ${bgTransColor(0.15)}; */
-// `;
+const Gradient = styled(LinearGradient)`
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	/* background-color: ${bgTransColor(0.15)}; */
+`;
 
 const Background = styled.ImageBackground`
 	flex: 1;

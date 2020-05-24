@@ -34,14 +34,14 @@ function PlaybackControl(props) {
     }
 
     function onLoopPress() {
-        props.seLoop(!loop);
+        props.setLoop(!loop);
     }
 
     return (
         <MainWrapper>
             <TouchableWithoutFeedback onPress={onShufflePress}>
                 <IconWrapper>
-                    {shuffle ? <TransIcon {...icon.shuffle} /> : <DisabledIcon {...icon.shuffle} />}
+                    {shuffle ? <TransIcon {...icons.shuffle} /> : <DisabledIcon {...icons.shuffle} />}
                 </IconWrapper>
             </TouchableWithoutFeedback>
             <StyledIcon {...createIconSet.skipBackward} onPress={skipBackward} />
