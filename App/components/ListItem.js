@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableNativeFeedback as Touchable, Dimensions} from 'react-native'; 
 import styled, {withTheme} from 'styled-components/native'; 
 import {contrastColor, contrastTransColor} from '../themes/styles'; 
+import Icon from './Icon'
 
 const ScreenWidth = Dimensions.get('window').width; 
 
