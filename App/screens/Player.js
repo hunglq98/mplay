@@ -8,6 +8,7 @@ import { backgroundColor, bgTransColor, contrastTransColor, contrastColor } from
 import PlaybackControl from '../components/PlaybackControl';
 import OptionsMenu from '../components/OptionsMenu';
 import LinearGradient from 'react-native-linear-gradient'; 
+import CoverArt from '../components/CoverArt';
 
 const PlayerWidth = Dimensions.get('window').width * 0.82; 
 
@@ -29,7 +30,7 @@ function Player(props) {
                 <OptionsMenu target={<StyledIcon {...icons.options} />} currentItem={currentTrack} />
             </Header>
             <Wrapper>
-                {/* <CoverArt src={currentTrack.artwork} /> */}
+                <CoverArt src={currentTrack.artwork} />
                 <TextWrapper>
                     <Title numberOfLines={1}>{currentTrack.title}</Title>
                     <Artist numberOfLines={1}>{currentTrack.artist}</Artist>
