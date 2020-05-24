@@ -53,7 +53,7 @@ function PlaybackControl(props) {
             <StyledIcon {...icons.skipForward} onPress={skipForward} />
             <TouchableWithoutFeedback onPress={onLoopPress}>
                 <IconWrapper>
-                    {loop ? <TransIcon {...icons.loopOne}} /> : <TransIcon {...icons.loop} />}
+                    {loop ? <TransIcon {...icons.loopOne} /> : <TransIcon {...icons.loop} />}
                 </IconWrapper>
             </TouchableWithoutFeedback>
         </MainWrapper>
