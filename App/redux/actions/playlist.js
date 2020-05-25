@@ -7,7 +7,7 @@ export const createPlaylist = (title) => {
 
 export const addToPlaylist = (title, song) => {
     return {
-        type: 'add_to_playalist', 
+        type: 'add_to_playlist', 
         payload: {title, song}
     }
 }

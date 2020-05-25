@@ -13,4 +13,5 @@ export default combineReducers({
     settings, 
     footer, 
     player,
+    settings
 })
