@@ -8,6 +8,7 @@ import ShowPlaylistScreen from '../screens/ShowPlaylist';
 import ShowContentScreen from '../screens/ShowContent';
 // import TabOrder from '../screens/TabOrder';
 import Icon from '../components/Icon';
+import ShowContent from '../screens/ShowContent';
 
 const durationSpec = { config: { duration: 200 } };
 
@@ -46,6 +47,7 @@ function MainStack(props) {
 			screenOptions={screenOptions}>
 			<Stack.Screen name="bottom-tab" component={BottomTabNav} options={noHeader} />
 			<Stack.Screen name="playlist" component={ShowPlaylistScreen} options={headerTitle} />
+			<Stack.Screen name="content" component={ShowContent} options={headerTitle}/>
 		</Stack.Navigator>
 	);
 }

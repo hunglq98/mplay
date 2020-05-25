@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, FlatList} from 'react-native'; 
 import {connect} from 'react-redux'; 
 import * as actions from '../redux/actions'; 
-import RnderTrack from '../components/RenderTrack'; 
+import RenderTrack from '../components/RenderTrack'; 
 import {flatListItemLayout} from '../helpers/FlatListLayout';
 
 function ShowContent(props) {

@@ -14,7 +14,7 @@ function Category(props) {
     const imageSource = props.image ? {uri: props.image} : placeholder;
     const subText = `${props.numOfTracks} ${props.numOfTracks > 1 ? 'tracks' : 'track'}`
     return (
-        <TouchableNativeFeedback onPress={onPress}>
+        <TouchableNativeFeedback onPress={props.onPress}>
             <View style={itemMargin}>
                 <Image source={imageSource} />
                 <TextWrapper>
@@ -27,6 +27,14 @@ function Category(props) {
 }
 
 export default Category; 
+
+
+const Image = styled.Image`
+	width: ${itemWidth}px;
+	height: ${itemHeight - itemHeight / 4}px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+`;
 
 
 const TextWrapper = styled.View`
