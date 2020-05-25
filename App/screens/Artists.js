@@ -13,13 +13,13 @@ function Artists(props) {
   }, [props.navigation]);
 
   function onArtistPress(title, content) {
-      console.log(title)
+    console.log(title);
     props.navigation.navigate('content', {title, content});
   }
 
   function renderArtists({item, index}) {
     if (item.empty) return <View style={styles.itemInvisible} />;
-    let songsWithCover = item.data.filter((song) => song.artwork !== 'cover');
+    let songsWithCover = item.data.filter(song => song.artwork !== 'cover');
     let cover =
       songsWithCover.length === 0 ? 'cover' : songsWithCover[0].artwork;
     return (
@@ -48,7 +48,6 @@ function Artists(props) {
     let sortedData = _.sortBy(sectionsData, 'title').filter(
       item => item.title !== 'null',
     );
-    console.log(sortedData)
     return sortedData;
   }
 
