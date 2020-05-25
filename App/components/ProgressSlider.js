@@ -4,7 +4,7 @@ import styled, {withTheme} from 'styled-components/native';
 import {connect} from 'react-redux'; 
 import * as actions from '../redux/actions'; 
 import TrackPlayer, {ProgressComponent} from 'react-native-track-player';
-import {contrastTranscolor} from '../themes/styles'; 
+import {contrastTransColor} from '../themes/styles'; 
 import Slider from 'react-native-slider'; 
 
 const ScreenWidth = Dimensions.get('window').width; 
@@ -27,6 +27,11 @@ class ProgressSlider extends ProgressComponent {
 
     timePassed(duration) {
         return this.secToTime(this.getProgress() * this.msToSec(duration))
+    }
+
+    secToTimeDuration(duration) {
+        const timeInSeconds = this.msToSec(duration); 
+        return this.secToTime(timeInSeconds)
     }
 
     seekTo = (value) => {

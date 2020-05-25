@@ -1,12 +1,16 @@
 import TrackPlayer from 'react-native-track-player';
 
 export const setCurrentTrack = (currentTrack) => async (dispatch) => {
-    await TrackPlayer.reset() 
-    await TrackPlayer.add(currentTrack); 
-    dispatch({type: 'current_track', payload: currentTrack});
-    TrackPlayer.play() 
-    dispatch({type: 'set_playback', payload: true})
-}
+	try {
+		await TrackPlayer.reset();
+		await TrackPlayer.add(currentTrack);
+		dispatch({ type: 'current_track', payload: currentTrack });
+		TrackPlayer.play();
+		dispatch({ type: 'set_playback', payload: true });
+	} catch (e) {
+		console.log(e);
+	}
+};
 
 export const setPlayback = (isPlaying) => {
     isPlaying ? TrackPlayer.play() : TrackPlayer.pause() 

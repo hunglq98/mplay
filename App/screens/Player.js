@@ -9,6 +9,7 @@ import PlaybackControl from '../components/PlaybackControl';
 import OptionsMenu from '../components/OptionsMenu';
 import LinearGradient from 'react-native-linear-gradient'; 
 import CoverArt from '../components/CoverArt';
+import ProgressSlider from '../components/ProgressSlider';
 
 const PlayerWidth = Dimensions.get('window').width * 0.82; 
 
@@ -16,10 +17,10 @@ const PlayerWidth = Dimensions.get('window').width * 0.82;
 function Player(props) {
     const {navigation, currentTrack, theme} = props; 
     console.log(currentTrack)
-    useEffect(() => {
-        let unsubscribe = navigation.addListener('focus', props.hideFooter)
-        return unsubscribe; 
-    }, [navigation])
+	useEffect(() => {
+		let unsubscribe = navigation.addListener('focus', props.hideFooter);
+		return unsubscribe;
+	}, [navigation]);
 
     return (
         <Background source={{uri: currentTrack.artwork}} blurRadius={40}>
@@ -35,7 +36,7 @@ function Player(props) {
                     <Title numberOfLines={1}>{currentTrack.title}</Title>
                     <Artist numberOfLines={1}>{currentTrack.artist}</Artist>
                 </TextWrapper>
-                {/* <ProgressSlider /> */}
+                <ProgressSlider />
                 <PlaybackControl/>
             </Wrapper>
             </Gradient>

@@ -10,10 +10,10 @@ export default function getMediaInfo(media) {
         settings: {foldersToSkip}
     } = store.getState();
 
-    console.log('FOLDERS SKIP', foldersToSkip)
     let mediaFiles = media.filter((val) => !foldersToSkip.includes(getFolder(val.path).toLowerCase()))
-    for (let i =0; i<mediaFiles.length; i++) {
-        if (mediaFiles[i].title) {
+    let currentIndex = 0
+    for (let i = 0; i<mediaFiles.length; i++) {
+        if (mediaFiles[i].title || mediaFiles[i].fileName) {
             folderName = getFolder(mediaFiles[i].path)
             newMedia.push({
                 id: mediaFiles[i].duration + i, 
@@ -23,9 +23,10 @@ export default function getMediaInfo(media) {
                 artwork: mediaFiles[i].cover || null, 
                 album: mediaFiles[i].album === '<unknown>' ? 'unknown': mediaFiles[i].album, 
                 author: mediaFiles[i].author === '<unknown>' ? 'unknown': mediaFiles[i].author, 
-                index: i, 
+                index: currentIndex, 
                 folder: folderName, 
             })
+            currentIndex++;
         }
     }
     return newMedia;

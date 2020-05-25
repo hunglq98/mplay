@@ -25,12 +25,12 @@ function ShowPlaylistScreen(props) {
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 				getItemLayout={flatListItemLayout}
 			/>
-			{/* <OptionsModal
+			<OptionsModal
 				selectedTrack={modal.item}
 				isVisible={modal.visible}
 				onPressCancel={() => setModal({ ...modal, visible: false })}
 				playlistRemoveOption
-			/> */}
+			/>
 		</View>
 	) : (
 		<EmptyWrapper>
