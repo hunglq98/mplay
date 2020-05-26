@@ -20,7 +20,7 @@ function InputDialog(props) {
     description,
     theme,
   } = props;
-  console.log(props);
+  
   useEffect(() => {
     if (isVisible && name) setInput(name);
     return () => setInput('');

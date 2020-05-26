@@ -44,7 +44,6 @@ function Footer(props) {
 
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
         renderFooter: state.footer.footerVisible, 
         currentTrack: state.playback.currentTrack, 

@@ -17,7 +17,6 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 function OptionsModal(props) {
   const [isdialogVisible, setDialogVisible] = useState(false);
   const [isRenameModalVisible, setRenameModal] = useState(false);
-
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -33,9 +32,11 @@ function OptionsModal(props) {
   }
 
   function onPressRename(newName) {
+    console.log(newName) 
     if (newName !== selectedTrack.title) {
       let index = newName.split('').indexOf('/');
       if (index === -1) {
+        console.log("RENAME")
         props.renameTrack(selectedTrack, newName);
       } else {
         console.log('Title should not contain /');
@@ -96,7 +97,7 @@ function OptionsModal(props) {
           onPressSave={onPressRename}
           onPressCancel={() => setRenameModal(false)}
           inputPlaceholder="New title"
-          title="Rename track"
+          title="Đổi tên"
           name={selectedTrack.title}
           saveButtonTitle="Rename"
         />

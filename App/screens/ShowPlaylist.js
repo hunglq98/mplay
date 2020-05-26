@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
 import RenderTrack from '../components/RenderTrack';
-// import OptionsModal from '../components/OptionsModal';
+import OptionsModal from '../components/OptionsModal';
 import { flatListItemLayout } from '../helpers/FlatListLayout';
 import { contrastColor } from '../themes/styles';
 

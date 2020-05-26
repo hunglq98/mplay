@@ -32,14 +32,12 @@ function Tracks(props) {
 
   useEffect(() => {
     props.getMedia();
-    console.log(media);
   }, []);
 
   useEffect(() => {
     let unsubscribe = props.navigation.addListener('focus', props.showFooter);
     return unsubscribe;
   }, [props.navigation]);
-  console.log(scrollY);
 
   const renderMargin =
     currentTrack.id != '0000' ? {marginBottom: 60, flex: 1} : {flex: 1};

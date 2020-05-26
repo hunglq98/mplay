@@ -16,7 +16,6 @@ const PlayerWidth = Dimensions.get('window').width * 0.82;
 
 function Player(props) {
     const {navigation, currentTrack, theme} = props; 
-    console.log(currentTrack)
 	useEffect(() => {
 		let unsubscribe = navigation.addListener('focus', props.hideFooter);
 		return unsubscribe;

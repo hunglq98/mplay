@@ -16,9 +16,6 @@ const trackInforReq = {
 export const getMedia = () => async (dispatch) => {
     const granted = await checkStoragePermissions(); 
     if (!granted) await getStoragePermissions(); 
-    if (granted) {
-        console.log('granted')
-    }
     const {media} = store.getState()
     if (media.mediaLoaded) {
         const media = await getMediaWithCovers(); 

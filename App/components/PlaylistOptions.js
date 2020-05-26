@@ -8,6 +8,7 @@ import InputDialog from './InputDialog';
 import ConfirmDialog from './ConfirmDialog';
 import RenderToast from '../components/RenderToast';
 import {elevatedBGColor, contrastColor} from '../themes/styles';
+import ListItem from '../components/ListItem';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -66,6 +67,7 @@ function PlaylistOptions(props) {
         />
         <InputDialog
           title="Rename playlist"
+          isVisible={isRenameModalVisible }
           name={selectedPlaylist}
           saveButtonTitle="Rename"
           inputPlaceholder="Nhập tên playlist mới"
@@ -85,6 +87,16 @@ function PlaylistOptions(props) {
     </StyledModal>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    playlists: state.playlist
+  }
+}
+
+export default connect(mapStateToProps, actions)(PlaylistOptions)
+
+
 
 const StyledModal = styled(Modal)`
   justify-content: flex-end;
