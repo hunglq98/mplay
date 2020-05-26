@@ -9,9 +9,9 @@ import FoldersScreen from '../screens/Folders';
 
 const screenProps = {
 	playlists: { component: PlaylistsScreen, options: { title: 'Playlists' } },
-	artists: { component: ArtistsScreen, options: { title: 'Artists' } },
-	albums: { component: AlbumsScreen, options: { title: 'Albums' } },
-	folders: { component: FoldersScreen, options: { title: 'Folders' } }
+	artists: { component: ArtistsScreen, options: { title: 'Nghệ sĩ' } },
+	albums: { component: AlbumsScreen, options: { title: 'Album' } },
+	folders: { component: FoldersScreen, options: { title: 'Hợp âm' } }
 };
 
 function TopMaterialTabNav(props) {

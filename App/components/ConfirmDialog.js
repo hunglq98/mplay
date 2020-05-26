@@ -29,12 +29,12 @@ export default withTheme(ConfirmDialog);
 const styles = {
     title: {
         fontFamily: 'ProductSans', 
-        marginLeft: '10px', 
+        marginLeft: 10, 
         color: `${foreground2Color}`
     }, 
     descripition: {
         fontFamily: 'ProductSans', 
-        padding: '10px', 
+        padding: 10, 
         color: `${contrastColor}`
     }
 };

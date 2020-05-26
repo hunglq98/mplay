@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 function Folders(props) {
     return (
         <View>
-            <Text>Folders screen</Text>
+            <Text>Chords screen</Text>
         </View>
     )
 }

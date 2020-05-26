@@ -32,7 +32,6 @@ function OptionsModal(props) {
   }
 
   function onPressRename(newName) {
-    console.log(newName) 
     if (newName !== selectedTrack.title) {
       let index = newName.split('').indexOf('/');
       if (index === -1) {
@@ -49,7 +48,7 @@ function OptionsModal(props) {
   function onDeleteConfirm() {
     setDialogVisible(false);
     props.onPressCancel();
-    props.deleteTrack(seletectedTrack);
+    props.deleteTrack(selectedTrack);
   }
 
   const modalTitle = `${selectedTrack.title}`;

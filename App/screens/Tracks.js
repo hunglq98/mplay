@@ -26,12 +26,13 @@ const ViewportHeight =
 const itemHeight = 75;
 
 function Tracks(props) {
-  const [scrollY, setScrollY] = useState(new Animated.Value(0));
+  const [scrollY] = useState(new Animated.Value(0));
   const [modal, setModal] = useState({visible: false, item: {}});
   const {currentTrack, mediaLoaded, media} = props;
 
   useEffect(() => {
     props.getMedia();
+    setupPlayer().then(() => currentTrack.id !== '0000' && TrackPlayer.add(currentTrack))
   }, []);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ function Tracks(props) {
       return (
         <View style={renderMargin}>
           <FlatList
-            keyExtractor={asset => asset.id.toString()}
+            keyExtractor={(asset) => asset.id.toString()}
             data={media}
             scrollEventThrottle={16}
             initialScrollIndex={currentTrack.inidex || undefined}
@@ -61,6 +62,9 @@ function Tracks(props) {
             renderItem={({item}) => (
               <RenderTrack item={item} setOptions={setModal} />
             )}
+            contentContainerStyle={styles.flatlistContent}
+            getItemLayout={flatListItemLayout}
+            rightOffset={10}
           />
           <Animated.View style={[styles.header, {height: headerHeight}]} />
           <OptionsModal

@@ -61,7 +61,7 @@ function Search(props) {
   return (
     <Wrapper>
       <TitleWrapper>
-        <Title>Search</Title>
+        <Title>Tìm kiếm</Title>
       </TitleWrapper>
       <SearchWrapper>
         <SearchInput

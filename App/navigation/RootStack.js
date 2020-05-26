@@ -14,7 +14,7 @@ function RootStack() {
     const Modal = createStackNavigator() 
     return (
         <Modal.Navigator
-            mode="card" 
+            mode="modal" 
             headerMode="none" 
             initialRouteName="main"
             screenOptions={screenOptions}

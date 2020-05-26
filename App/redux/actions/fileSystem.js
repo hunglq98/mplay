@@ -10,7 +10,7 @@ export const deleteTrack = (track) => async (dispatch) => {
         await RNFetchBlob.fs.scanFile({path: track.url, mime})
         dispatch({type: 'delete_track', payload: track})
     } catch (e) {
-        Alert.alert(JSON.stringify(e))
+        console.log(e)
     }
 }
 
@@ -30,7 +30,6 @@ export const renameTrack = (track, newName) => async (dispatch) => {
 		await RNFetchBlob.fs.scanFile([{ path: track.url, mime }]);
 		dispatch({ type: 'rename_track', payload: { ...track, title: newName, url: newPath } });
 	} catch (e) {
-		Alert.alert(JSON.stringify(e))
 		console.log(JSON.stringify(e))
 	}
 }
