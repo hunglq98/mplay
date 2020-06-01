@@ -20,7 +20,7 @@ class ProgressSlider extends ProgressComponent {
         if (secs < 0) {
             return '0:00'
         }
-        const minutes = Math.floor(secs / 60)
+        let minutes = Math.floor(secs / 60)
         let seconds = Math.floor(secs % 60)
         return seconds <= 9 ? `${minutes}:0${seconds}` : `${minutes}:${seconds}`
     }
@@ -30,12 +30,12 @@ class ProgressSlider extends ProgressComponent {
     }
 
     secToTimeDuration(duration) {
-        const timeInSeconds = this.msToSec(duration); 
+        let timeInSeconds = this.msToSec(duration); 
         return this.secToTime(timeInSeconds)
     }
 
     seekTo = (value) => {
-        const seekPosition = value * this.msToSec(this.props.currentTrack.duration);
+        let seekPosition = value * this.msToSec(this.props.currentTrack.duration);
         TrackPlayer.seekTo(seekPosition)
     }
 
@@ -46,7 +46,7 @@ class ProgressSlider extends ProgressComponent {
                 <Slider
                     value={this.getProgress()}
                     style={styles.sliderStyle} 
-                    minimumTrackintColor={theme.contrast} 
+                    minimumTrackisliderStylentColor={theme.contrast} 
                     maximumTrackintColor={`${theme.contrastTrans}0.3)`}
                     thumbTouchSize={styles.thumbSize}
                     trackStyle={styles.barStyle}

@@ -44,10 +44,11 @@ function Player(props) {
 }
 
 function mapStateToProps(state) {
-    return {
-        currentTrack: state.playback.currentTrack
-    }
+	return {
+		currentTrack: state.playback.currentTrack
+	};
 }
+
 
 export default connect(mapStateToProps, actions)(withTheme(Player))
 

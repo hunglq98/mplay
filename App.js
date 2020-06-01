@@ -10,7 +10,7 @@ export default function App() {
   const [runTime, setRunTime] = useState(false) 
 
   useEffect(() => {
-    setTimeout(() => setRunTime(true), 800);
+    setTimeout(() => setRunTime(true), 750);
     store.dispatch({type: 'set_playback', payload: false})
     if (Text.defaultProps == null) Text.defaultProps = {}; 
     Text.defaultProps.allowFontScaling = false; 

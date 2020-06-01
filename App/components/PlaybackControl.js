@@ -5,8 +5,7 @@ import {connect} from 'react-redux';
 import * as actions from '../redux/actions';
 import Icon from '../components/Icon';
 import {contrastColor, contrastTransColor} from '../themes/styles';
-import {createIconSet} from 'react-native-vector-icons';
-
+import RenderToast from '../components/RenderToast';
 const WrapperWidth = Dimensions.get('window').width * 0.82;
 
 function getRandomNum(min, max) {
@@ -40,6 +39,7 @@ function PlaybackControl(props) {
   }
 
   function onLoopPress() {
+    RenderToast(`Loop ${loop ? 'all tracks' : 'this track'}`);
     props.setLoop(!loop);
   }
 
