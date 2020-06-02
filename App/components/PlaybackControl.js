@@ -17,7 +17,7 @@ function PlaybackControl(props) {
   const {media, currentTrack, isPlaying, loop, shuffle} = props;
 
   function skipForward() {
-    const nextTrack = shuffle
+    let nextTrack = shuffle
       ? media[getRandomNum(0, media.length)]
       : currentTrack.index === media.length - 1
       ? media[0]

@@ -30,15 +30,15 @@ function Tracks(props) {
   const [modal, setModal] = useState({visible: false, item: {}});
   const {currentTrack, mediaLoaded, media} = props;
 
-  useEffect(() => {
-    props.getMedia();
-    setupPlayer().then(() => currentTrack.id !== '0000' && TrackPlayer.add(currentTrack))
-  }, []);
+	useEffect(() => {
+		props.getMedia();
+		setupPlayer().then(() => currentTrack.id !== '0000' && TrackPlayer.add(currentTrack));
+	}, []);
 
-  useEffect(() => {
-    let unsubscribe = props.navigation.addListener('focus', props.showFooter);
-    return unsubscribe;
-  }, [props.navigation]);
+	useEffect(() => {
+		let unsubscribe = props.navigation.addListener('focus', props.showFooter);
+		return unsubscribe;
+	}, [props.navigation]);
 
   const renderMargin =
     currentTrack.id != '0000' ? {marginBottom: 60, flex: 1} : {flex: 1};
@@ -65,6 +65,7 @@ function Tracks(props) {
             contentContainerStyle={styles.flatlistContent}
             getItemLayout={flatListItemLayout}
             rightOffset={10}
+            thumbStyle={styles.thumbStyle}
           />
           <Animated.View style={[styles.header, {height: headerHeight}]} />
           <OptionsModal
