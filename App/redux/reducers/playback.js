@@ -10,7 +10,7 @@ const initalState = {
   shuffle: false,
   repeatPlaylist: [], 
 };
-
+  
 export default function (state = initalState, action) {
   switch (action.type) {
     case 'current_track':

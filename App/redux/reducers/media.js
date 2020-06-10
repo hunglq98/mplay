@@ -21,8 +21,8 @@ export default function (state = initialState, action) {
             let index = mediaList.findIndex((item) => item.id === action.payload.id);
             if (index !== -1) {
                 mediaList.splice(index, 1) 
-                mediaList = mediaList.map((item, index) => {
-                    return {...item, index: index}
+                mediaList = mediaList.map((item, i) => {
+                    return {...item, index: i}
                 })
                 return {...state, mediaFiles: mediaList}
             }
