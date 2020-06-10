@@ -10,19 +10,19 @@ export default function (state = initialState, action) {
             return {mediaLoaded: true, mediaFiles: action.payload}        
     
         case 'rename_track': {
-            const mediaList = [...state.mediaFiles] 
-            const index = mediaList.findIndex((item) => item.id === action.payload.id);
+            let mediaList = [...state.mediaFiles] 
+            let index = mediaList.findIndex((item) => item.id === action.payload.id);
             if (index !== -1) mediaList[index] = action.payload; 
-            return {...state, mediafiles: mediaList}
+            return {...state, mediaFiles: mediaList}
         }
 
         case 'delete_track': {
-            const mediaList = [...state.mediaFiles]
-            const index = mediaList.findIndex((item) => item.id === action.payload.id);
+            let mediaList = [...state.mediaFiles]
+            let index = mediaList.findIndex((item) => item.id === action.payload.id);
             if (index !== -1) {
                 mediaList.splice(index, 1) 
                 mediaList = mediaList.map((item, index) => {
-                    return {...item, index: i}
+                    return {...item, index: index}
                 })
                 return {...state, mediaFiles: mediaList}
             }

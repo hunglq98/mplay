@@ -8,6 +8,7 @@ const initalState = {
   },
   loop: false,
   shuffle: false,
+  repeatPlaylist: [], 
 };
 
 export default function (state = initalState, action) {

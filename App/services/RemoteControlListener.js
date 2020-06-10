@@ -33,7 +33,7 @@ module.exports = async function() {
   TrackPlayer.addEventListener('remote-next', () => {
     let {playback, media} = store.getState();
     let {currentTrack, shuffle} = playback;
-    let {mediFiles} = media;
+    let {mediaFiles} = media;
     backgroundPlayback(
       shuffle
         ? mediaFiles[getRandomNum(0, mediaFiles.length)]
