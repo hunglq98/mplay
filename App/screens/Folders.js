@@ -6,6 +6,7 @@ import * as actions from '../redux/actions';
 import Icon from '../components/Icon';
 import RenderTrack from '../components/RenderTrack';
 import OptionsModal from '../components/OptionsModal';
+import {Button} from 'react-native-elements';
 import SearchInput from '../components/SearchInput';
 import {
   contrastColor,
@@ -17,6 +18,7 @@ function Folder(props) {
   const [searchString, setSearchString] = useState('');
   const [isSearchFocused, setSearchFocus] = useState(false);
   const [modal, setModal] = useState({visible: false, item: {}});
+  const [result, setResult] = useState([])
 
   useEffect(() => {
     let unsubscribe1 = props.navigation.addListener('focus', props.showFooter);
@@ -71,14 +73,17 @@ function Folder(props) {
           onBlur={() => setSearchFocus(false)}
         />
       </SearchWrapper>
-      <View style={{flex: 1}}>
+      <SearchWrapper>
+      <Button style={{marginTop: 6}} title="Tìm kiếm" onPress={() => console.log(searchString)} />
+      </SearchWrapper>
+      {/* <View style={{flex: 1}}>
         {renderSearch()}
         <OptionsModal
           selectedTrack={modal.item}
           isVisible={modal.visible}
           onPressCancel={() => setModal({...modal, visible: false})}
         />
-      </View>
+      </View> */}
     </Wrapper>
   );
 }
