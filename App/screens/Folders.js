@@ -19,7 +19,7 @@ function Folder(props) {
   const [searchString, setSearchString] = useState('');
   const [isSearchFocused, setSearchFocus] = useState(false);
   const [modal, setModal] = useState({visible: false, item: {}});
-  const [result, setResult] = useState([])
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     let unsubscribe1 = props.navigation.addListener('focus', props.showFooter);
@@ -43,8 +43,13 @@ function Folder(props) {
   }
 
   function onSearch() {
-    console.log(searchString)
-    axios.get('192.168.1.5:3000/get/1037').then(res => {console.log(res)})
+    axios
+      .get('http://localhost:3000/search/tinh&ca')
+      .then((res) => {
+        console.log('SUCS')
+        console.log(res)
+      })
+      .catch(e => console.log('ERROR', e));
   }
 
   function renderSearch() {
@@ -80,7 +85,7 @@ function Folder(props) {
         />
       </SearchWrapper>
       <SearchWrapper>
-      <Button style={{marginTop: 6}} title="Tìm kiếm" onPress={onSearch} />
+        <Button style={{marginTop: 6}} title="Tìm kiếm" onPress={onSearch} />
       </SearchWrapper>
       {/* <View style={{flex: 1}}>
         {renderSearch()}
