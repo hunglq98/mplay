@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 import {connect} from 'react-redux';
 import * as actions from '../redux/actions';
@@ -15,12 +15,15 @@ import {
   contrastTransColor,
 } from '../themes/styles';
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
+
+
 function Folder(props) {
   const [searchString, setSearchString] = useState('');
   const [isSearchFocused, setSearchFocus] = useState(false);
   const [modal, setModal] = useState({visible: false, item: {}});
   const [result, setResult] = useState([]);
-
+  console.log(result.data)
   useEffect(() => {
     let unsubscribe1 = props.navigation.addListener('focus', props.showFooter);
     let unsubscribe2 = props.navigation.addListener('blur', () =>
@@ -32,50 +35,23 @@ function Folder(props) {
     };
   }, [props.navigation]);
 
-  function listFilter() {
-    if (searchString) {
-      return props.media.filter(item => {
-        let itemData = ` ${item.title} ${item.artist}`.toUpperCase();
-        let searchData = ' ' + searchString.toUpperCase();
-        return itemData.indexOf(searchData) > -1;
-      });
-    }
-  }
 
   function onSearch() {
     axios
       .get('http://localhost:3000/search/tinh&ca')
       .then((res) => {
-        console.log('SUCS')
-        console.log(res)
+        setResult(JSON.parse(res.data))
       })
       .catch(e => console.log('ERROR', e));
   }
 
-  function renderSearch() {
-    const renderMargin =
-      props.currentTrack.id !== '0000' ? {marginBottom: 60} : {flex: 1};
-    return isSearchFocused || searchString ? (
-      <FlatList
-        data={listFilter()}
-        renderItem={({item}) => (
-          <RenderTrack item={item} setOptions={setModal} />
-        )}
-        keyExtractor={asset => asset.id.toString()}
-        style={[styles.resultsWrapper, renderMargin]}
-      />
-    ) : (
-      <PlaceholderWrapper>
-        <SearchIcon {...styles.searchIcon} />
-        <PlaceholderText>Nhập tên bài hát lên thanh tìm kiếm</PlaceholderText>
-      </PlaceholderWrapper>
-    );
+  function onTitlePress(item) {
+    console.log(item)
   }
+
+
   return (
     <Wrapper>
-      <TitleWrapper>
-        <Title>Tìm kiếm</Title>
-      </TitleWrapper>
       <SearchWrapper>
         <SearchInput
           value={searchString}
@@ -87,6 +63,22 @@ function Folder(props) {
       <SearchWrapper>
         <Button style={{marginTop: 6}} title="Tìm kiếm" onPress={onSearch} />
       </SearchWrapper>
+      <FlatList
+      keyExtractor={(item, index) => index.toString()}
+      data={result.data}
+      renderItem={({item}) => (
+       <Touchable onPresss = {onTitlePress(item)}>
+           <TextWrapper>
+           <Title numberOfLines={1}>
+            {item._title_ascii}
+          </Title>
+           </TextWrapper>
+       </Touchable> 
+      )}
+      getItemLayout={(data, index) => (
+        {length: 40, offset: 40 * index, index}
+      )}
+       />
       {/* <View style={{flex: 1}}>
         {renderSearch()}
         <OptionsModal
@@ -118,12 +110,6 @@ const Wrapper = styled.View`
 
 const TitleWrapper = styled.View`
   align-items: center;
-`;
-
-const Title = styled.Text`
-  font-family: 'CircularBold';
-  font-size: 36px;
-  color: ${contrastColor};
 `;
 
 const SearchWrapper = styled.View`
@@ -160,3 +146,28 @@ const styles = {
     size: 62,
   },
 };
+
+
+const Touchable = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  height: 65px;
+  margin-top: 10px;
+  padding-left: 15px;
+`;
+
+const TextWrapper = styled.View`
+  flex-direction: column;
+  flex: 1;
+  height: 52px;
+  margin-left: 15px;
+  justify-content: space-evenly;
+`;
+
+const Title = styled.Text`
+  font-family: 'CircularBold';
+  font-size: 14px;
+  width: ${SCREEN_WIDTH / 2}px;
+  color: ${props =>
+    props.current ? foregroundColor(props) : contrastColor(props)};
+`;
