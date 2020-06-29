@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList, TouchableOpacity, Dimensions} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 import {connect} from 'react-redux';
 import * as actions from '../redux/actions';
@@ -8,6 +8,7 @@ import RenderTrack from '../components/RenderTrack';
 import OptionsModal from '../components/OptionsModal';
 import {Button} from 'react-native-elements';
 import SearchInput from '../components/SearchInput';
+import ListItem from '../components/ListItem';
 import axios from 'axios';
 import {
   contrastColor,
@@ -17,13 +18,12 @@ import {
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-
 function Folder(props) {
   const [searchString, setSearchString] = useState('');
   const [isSearchFocused, setSearchFocus] = useState(false);
   const [modal, setModal] = useState({visible: false, item: {}});
   const [result, setResult] = useState([]);
-  console.log(result.data)
+  console.log(result.data);
   useEffect(() => {
     let unsubscribe1 = props.navigation.addListener('focus', props.showFooter);
     let unsubscribe2 = props.navigation.addListener('blur', () =>
@@ -35,12 +35,11 @@ function Folder(props) {
     };
   }, [props.navigation]);
 
-
   function onSearch() {
     axios
       .get('http://localhost:3000/search/tinh&ca')
-      .then((res) => {
-        setResult(JSON.parse(res.data))
+      .then(res => {
+        setResult(JSON.parse(res.data));
       })
       .catch(e => console.log('ERROR', e));
   }
@@ -48,7 +47,6 @@ function Folder(props) {
   function onTitlePress(item) {
     console.log(item)
   }
-
 
   return (
     <Wrapper>
@@ -63,30 +61,21 @@ function Folder(props) {
       <SearchWrapper>
         <Button style={{marginTop: 6}} title="Tìm kiếm" onPress={onSearch} />
       </SearchWrapper>
-      <FlatList
-      keyExtractor={(item, index) => index.toString()}
-      data={result.data}
-      renderItem={({item}) => (
-       <Touchable onPresss = {onTitlePress(item)}>
-           <TextWrapper>
-           <Title numberOfLines={1}>
-            {item._title_ascii}
-          </Title>
-           </TextWrapper>
-       </Touchable> 
-      )}
-      getItemLayout={(data, index) => (
-        {length: 40, offset: 40 * index, index}
-      )}
-       />
-      {/* <View style={{flex: 1}}>
-        {renderSearch()}
-        <OptionsModal
-          selectedTrack={modal.item}
-          isVisible={modal.visible}
-          onPressCancel={() => setModal({...modal, visible: false})}
-        />
-      </View> */}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {result.data ? result.data.map((item, value) => {
+          return (
+            <ListItem
+              title = {item._title} 
+              subtitle = {item._singers} 
+              key = {item.id} 
+              onPress = {() => onTitlePress(item)}
+             />
+          )
+        }) : <PlaceholderWrapper>
+        <SearchIcon {...styles.searchIcon} />
+        <PlaceholderText>Nhập tên bài hát lên thanh tìm kiếm</PlaceholderText>
+      </PlaceholderWrapper>}
+      </ScrollView>
     </Wrapper>
   );
 }
@@ -146,7 +135,6 @@ const styles = {
     size: 62,
   },
 };
-
 
 const Touchable = styled.TouchableOpacity`
   flex-direction: row;
