@@ -8,6 +8,7 @@ import RenderTrack from '../components/RenderTrack';
 import OptionsModal from '../components/OptionsModal';
 import {Button} from 'react-native-elements';
 import SearchInput from '../components/SearchInput';
+import axios from 'axios';
 import {
   contrastColor,
   backgroundColor,
@@ -39,6 +40,11 @@ function Folder(props) {
         return itemData.indexOf(searchData) > -1;
       });
     }
+  }
+
+  function onSearch() {
+    console.log(searchString)
+    axios.get('192.168.1.5:3000/get/1037').then(res => {console.log(res)})
   }
 
   function renderSearch() {
@@ -74,7 +80,7 @@ function Folder(props) {
         />
       </SearchWrapper>
       <SearchWrapper>
-      <Button style={{marginTop: 6}} title="Tìm kiếm" onPress={() => console.log(searchString)} />
+      <Button style={{marginTop: 6}} title="Tìm kiếm" onPress={onSearch} />
       </SearchWrapper>
       {/* <View style={{flex: 1}}>
         {renderSearch()}
