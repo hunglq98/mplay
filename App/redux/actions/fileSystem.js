@@ -17,6 +17,8 @@ export const deleteTrack = (track) => async (dispatch) => {
 
 export const renameTrack = (track, newName) => async (dispatch) => {
 	try {
+		console.log('previous name ', track)
+		console.log('new name ', newName)
 		let pathArr = track.url.split('/');
 		let extension = pathArr[pathArr.length - 1].split('.');
 		extension = extension[extension.length - 1];
